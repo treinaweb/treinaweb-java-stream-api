@@ -2,6 +2,9 @@ package br.com.treinaweb.java.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Main {
 
@@ -28,6 +31,25 @@ public class Main {
 		Mensageiro mensageiro = (mensagem) -> 
 			System.out.println("Mensagem da expressão lambda: " + mensagem);
 		mensageiro.emitirMensagem("TreinaWeb");
+		// ********************************
+		// Consumer
+		// Entra um parametro e nao retorna nada!
+		System.out.println("Execução do consumer: ");
+		Consumer<Empregado> consumer = (emp) -> {
+			System.out.println(emp.getNome() + ", R$ " + emp.getSalario());
+		};
+		consumer.accept(new Empregado(10, "TreinaWeb", 1000, "Educação"));
+		// Functions
+		System.out.println("Exemplo da function: ");
+		Function<Empregado, Double> function = (emp) -> emp.getSalario() * 10;
+		double novoSalario = function.apply(new Empregado(1000, "", 1, ""));
+		System.out.println(novoSalario);
+		// Binary Operator
+		System.out.println("Execução do BinaryOperator: ");
+		BinaryOperator<Empregado> binaryOperator = (emp1, emp2) -> new Empregado(-1, emp1.getNome() + emp2.getNome(), emp1.getSalario() + emp2.getSalario(), "Junção");
+		Empregado novoEmpregado = binaryOperator.apply(new Empregado(0, "Treina", 1000, ""), new Empregado(0, "Web", 10000, ""));
+		System.out.println(novoEmpregado.getNome() + ", R$ " + novoEmpregado.getSalario());
+		
 	}
 	
 }
