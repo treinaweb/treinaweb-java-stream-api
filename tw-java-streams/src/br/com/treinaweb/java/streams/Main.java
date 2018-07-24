@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -16,11 +15,10 @@ public class Main {
 		empregados.add(new Empregado(4, "Josefina", 7000, "CTO"));
 		
 		System.out.println(" ** Funcionários que começam com J");
-		Stream<Empregado> streamEmpregados = empregados.stream();
-		Stream<Empregado> empregadosComecamComJ = streamEmpregados.filter(emp -> emp.getNome().startsWith("J"));
-		empregadosComecamComJ.forEach((emp) -> System.out.println(emp.getNome()));
-		List<Empregado> empregadosComJ = empregadosComecamComJ.collect(Collectors.toList());
-		empregadosComJ.stream().forEach((emp) -> System.out.println(emp.getNome()));
+		List<Empregado> empregadosComJ = empregados.stream()
+				.filter(emp -> emp.getNome().startsWith("J"))
+				.collect(Collectors.toList());
+		empregadosComJ.forEach((emp) -> System.out.println(emp.getNome()));
 		OptionalDouble menorSalario = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).min();
 		if (menorSalario.isPresent()) {
 			System.out.println("Menor salário: R$ " + menorSalario.getAsDouble());
