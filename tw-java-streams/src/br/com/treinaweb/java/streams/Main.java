@@ -17,6 +17,7 @@ public class Main {
 		Stream<Empregado> streamEmpregados = empregados.stream();
 		Stream<Empregado> empregadosComecamComJ = streamEmpregados.filter(emp -> emp.getNome().startsWith("J"));
 		empregadosComecamComJ.forEach((emp) -> System.out.println(emp.getNome()));
+		empregadosComecamComJ.forEach((emp) -> System.out.println(emp.getNome()));
 		
 		/*System.out.println(" ** LISTA DE EMPREGADOS **");
 		for (Empregado emp : empregados) {
