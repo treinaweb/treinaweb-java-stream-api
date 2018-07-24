@@ -12,13 +12,17 @@ public class Main {
 		empregados.add(new Empregado(3, "José", 5000, "Controladoria"));
 		empregados.add(new Empregado(4, "Josefina", 7000, "CTO"));
 		System.out.println(" ** LISTA DE EMPREGADOS **");
-		for (Empregado emp : empregados) {
+		/*for (Empregado emp : empregados) {
 			System.out.println(emp.getNome());
-		}
-		double salarioTotal = 0;
+		}*/
+		empregados.stream().forEach(emp -> {
+			System.out.println(emp.getNome());
+		});
+		/*double salarioTotal = 0;
 		for (Empregado emp : empregados) {
 			salarioTotal = salarioTotal + emp.getSalario();
-		}
+		}*/
+		double salarioTotal = empregados.stream().mapToDouble(emp -> emp.getSalario()).sum();
 		System.out.println("Salário total: R$ " + salarioTotal);
 	}
 	
