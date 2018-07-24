@@ -35,7 +35,10 @@ public class Main {
 		System.out.println("Maior salário: R$ " + sumario.getMax());
 		System.out.println("Menor salário: R$ " + sumario.getMin());
 		System.out.println("Salário médio: R$ " + sumario.getAverage());
-		System.out.println("Folha salarial: R$ " + sumario.getSum());		
+		System.out.println("Folha salarial: R$ " + sumario.getSum());
+		List<String> nomesEmpregados = empregados.stream().map(emp -> emp.getNome()).collect(Collectors.toList());
+		System.out.println(" ** Nomes dos empregados: ");
+		nomesEmpregados.forEach(System.out::println);
 		/*System.out.println(" ** LISTA DE EMPREGADOS **");
 		for (Empregado emp : empregados) {
 			System.out.println(emp.getNome());
