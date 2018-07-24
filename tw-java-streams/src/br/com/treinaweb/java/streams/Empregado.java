@@ -7,6 +7,14 @@ public class Empregado {
 	private double salario;
 	private String departamento;
 
+	public Empregado(long id, String nome, double salario, String departamento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.salario = salario;
+		this.departamento = departamento;
+	}
+
 	public long getId() {
 		return id;
 	}
