@@ -1,6 +1,7 @@
 package br.com.treinaweb.java.streams;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -29,7 +30,12 @@ public class Main {
 		if (menorSalario.isPresent()) {
 			System.out.println("Menor salário: R$ " + menorSalario.getAsDouble());
 		}
-		
+		DoubleSummaryStatistics sumario = empregados.stream().collect(Collectors.summarizingDouble(Empregado::getSalario));
+		System.out.println("Estatísticas dos salários:");
+		System.out.println("Maior salário: R$ " + sumario.getMax());
+		System.out.println("Menor salário: R$ " + sumario.getMin());
+		System.out.println("Salário médio: R$ " + sumario.getAverage());
+		System.out.println("Folha salarial: R$ " + sumario.getSum());		
 		/*System.out.println(" ** LISTA DE EMPREGADOS **");
 		for (Empregado emp : empregados) {
 			System.out.println(emp.getNome());
