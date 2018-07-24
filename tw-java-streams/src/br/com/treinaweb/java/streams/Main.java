@@ -2,12 +2,7 @@ package br.com.treinaweb.java.streams;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -17,17 +12,23 @@ public class Main {
 		empregados.add(new Empregado(2, "Maria", 3000, "RH"));
 		empregados.add(new Empregado(3, "José", 5000, "Controladoria"));
 		empregados.add(new Empregado(4, "Josefina", 7000, "CTO"));
-		System.out.println(" ** LISTA DE EMPREGADOS **");
-		/*for (Empregado emp : empregados) {
+		
+		System.out.println(" ** Funcionários que começam com J");
+		Stream<Empregado> streamEmpregados = empregados.stream();
+		Stream<Empregado> empregadosComecamComJ = streamEmpregados.filter(emp -> emp.getNome().startsWith("J"));
+		empregadosComecamComJ.forEach((emp) -> System.out.println(emp.getNome()));
+		
+		/*System.out.println(" ** LISTA DE EMPREGADOS **");
+		for (Empregado emp : empregados) {
 			System.out.println(emp.getNome());
-		}*/
+		}
 		empregados.stream().forEach(emp -> {
 			System.out.println(emp.getNome());
 		});
-		/*double salarioTotal = 0;
+		double salarioTotal = 0;
 		for (Empregado emp : empregados) {
 			salarioTotal = salarioTotal + emp.getSalario();
-		}*/
+		}
 		double salarioTotal = empregados.stream().mapToDouble(emp -> emp.getSalario()).sum();
 		System.out.println("Salário total: R$ " + salarioTotal);
 		
@@ -63,7 +64,7 @@ public class Main {
 		Empregado emp1 = supplier.get();
 		System.out.println(emp1.getId());
 		Empregado emp2 = supplier.get();
-		System.out.println(emp2.getId());		
+		System.out.println(emp2.getId());*/		
 	}
 	
 }
