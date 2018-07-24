@@ -2,9 +2,12 @@ package br.com.treinaweb.java.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Main {
 
@@ -49,7 +52,18 @@ public class Main {
 		BinaryOperator<Empregado> binaryOperator = (emp1, emp2) -> new Empregado(-1, emp1.getNome() + emp2.getNome(), emp1.getSalario() + emp2.getSalario(), "Junção");
 		Empregado novoEmpregado = binaryOperator.apply(new Empregado(0, "Treina", 1000, ""), new Empregado(0, "Web", 10000, ""));
 		System.out.println(novoEmpregado.getNome() + ", R$ " + novoEmpregado.getSalario());
-		
+		// Predicate
+		System.out.println("Execução do predicate: ");
+		Predicate<Empregado> predicate = (emp) -> emp.getNome().endsWith("Web");
+		Boolean terminaComWeb = predicate.test(new Empregado(0, "TreinaWeb", 0, ""));
+		System.out.println(terminaComWeb);
+		// Supplier
+		System.out.println("Execução do supplier: ");
+		Supplier<Empregado> supplier = () -> new Empregado(new Random().nextInt(), "TreinaWeb", 0, "");
+		Empregado emp1 = supplier.get();
+		System.out.println(emp1.getId());
+		Empregado emp2 = supplier.get();
+		System.out.println(emp2.getId());		
 	}
 	
 }
