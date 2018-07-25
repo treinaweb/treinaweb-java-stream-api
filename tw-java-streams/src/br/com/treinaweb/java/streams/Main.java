@@ -1,5 +1,6 @@
 package br.com.treinaweb.java.streams;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
@@ -50,6 +51,15 @@ public class Main {
 			emps.forEach(emp -> {
 				System.out.println("	* " + emp.getNome());
 			});
+		});
+		empregados.stream().forEach(emp -> {
+			System.out.println(emp.getNome());
+		});
+		empregados.stream().forEach(System.out::println);
+		
+		PrintStream print = System.out;
+		empregados.stream().forEach(emp -> {
+			print.println(emp.getNome());
 		});
 		/*System.out.println(" ** LISTA DE EMPREGADOS **");
 		for (Empregado emp : empregados) {
