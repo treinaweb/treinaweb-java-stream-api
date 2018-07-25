@@ -3,6 +3,7 @@ package br.com.treinaweb.java.streams;
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -42,6 +43,14 @@ public class Main {
 		String nomesSeparadosPorVirgula = empregados.stream().map(Empregado::getNome)
 				.reduce("Nomes dos empregados: ", (n1, n2) -> n1 + ", " + n2);
 		System.out.println(nomesSeparadosPorVirgula);
+		Map<String, List<Empregado>> dadosDepartamento = empregados.stream().collect(Collectors.groupingBy(Empregado::getDepartamento));
+		System.out.println(" ** Empregados por departamento: ");
+		dadosDepartamento.forEach((dep, emps) -> {
+			System.out.println(" - " + dep + ", " + emps.size() + " empregados");
+			emps.forEach(emp -> {
+				System.out.println("	* " + emp.getNome());
+			});
+		});
 		/*System.out.println(" ** LISTA DE EMPREGADOS **");
 		for (Empregado emp : empregados) {
 			System.out.println(emp.getNome());
